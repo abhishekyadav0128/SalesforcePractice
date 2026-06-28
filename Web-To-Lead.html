@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+    <title>Salesforce Lead Form</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            padding: 30px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 60px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #f1f1f1;
+            margin-bottom: 30px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-box i {
+            position: absolute;
+            left: 15px;
+            top: 16px;
+            color: #0083b0;
+            font-size: 16px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            box-shadow: 0 0 8px white;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            background: white;
+            color: #0083b0;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: #f4f4f4;
+        }
+
+        button i {
+            margin-right: 8px;
+        }
+
+        .loading {
+            display: none;
+        }
+
+        @media(max-width:600px) {
+            .card {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="logo">
+            ☁️
+        </div>
+
+        <h2>Salesforce Web To Lead</h2>
+
+        <p class="subtitle">
+            Fill in your details and we'll get back to you soon.
+        </p>
+        <form id="leadForm"
+            action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dg5000003rG2I"
+            method="POST">
+
+            <input type="hidden" name="oid" value="00Dg5000003rG2I">
+            <input type="hidden" name="retURL" value="file:///C:/Users/Anurag%20Yadav/OneDrive/Documents/Desktop/SalesforcePractice/ThankYouPage.html">
+
+            <div class="input-box">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="first_name" placeholder="First Name">
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" name="phone" placeholder="Phone Number">
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-building"></i>
+                <input type="text" name="company" placeholder="Company Name" required>
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-message"></i>
+                <textarea name="description" placeholder="Write your message..."></textarea>
+            </div>
+
+            <button id="submitBtn">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span class="text">Submit Lead</span>
+                <span class="loading">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    Submitting...
+                </span>
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        const form = document.getElementById("leadForm");
+        const btn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", function () {
+
+            btn.disabled = true;
+
+            btn.querySelector(".text").style.display = "none";
+            btn.querySelector(".loading").style.display = "inline";
+
+        });
+    </script>
+
+</body>
+
+</html>
